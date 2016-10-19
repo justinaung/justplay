@@ -11,6 +11,7 @@ import MediaPlayer
 
 class ViewController: UIViewController {
 
+   @IBOutlet weak var playPauseButton: UIButton!
    var player: Player!
    
    override func viewDidLoad() {
@@ -23,6 +24,15 @@ class ViewController: UIViewController {
       player.playStream(url)
    }
 
+   @IBAction func playPauseButtonClick(sender: AnyObject) {
+      if (player.avPlayer.rate > 0) {
+         player.pauseAudio()
+      }
+      else {
+         player.playAudio()
+      }
+      
+   }
    override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.
