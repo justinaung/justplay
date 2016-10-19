@@ -22,6 +22,7 @@ class ViewController: UIViewController {
       let url = "http://htetnainga.sg-host.com/music_app/dubstep.mp3"
       
       player.playStream(url)
+      changePlayButton()
    }
 
    @IBAction func playPauseButtonClick(sender: AnyObject) {
@@ -31,8 +32,18 @@ class ViewController: UIViewController {
       else {
          player.playAudio()
       }
-      
+      changePlayButton()
    }
+   
+   func changePlayButton() {
+      if (player.avPlayer.rate > 0) {
+         playPauseButton.setImage(UIImage(named: "pauseIcon"), forState: UIControlState.Normal)
+      }
+      else {
+         playPauseButton.setImage(UIImage(named: "playIcon"), forState: UIControlState.Normal)
+      }
+   }
+   
    override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.

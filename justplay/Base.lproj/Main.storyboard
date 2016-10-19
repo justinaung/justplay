@@ -23,7 +23,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQD-H3-M1C">
                                         <rect key="frame" x="286" y="18" width="29" height="29"/>
-                                        <state key="normal" image="playicon"/>
+                                        <state key="normal" image="playIcon"/>
                                         <connections>
                                             <action selector="playPauseButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ujc-1N-Ssk"/>
                                         </connections>
@@ -53,6 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="playicon" width="29" height="29"/>
+        <image name="playIcon" width="29" height="29"/>
     </resources>
 </document>
