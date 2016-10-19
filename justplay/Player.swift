@@ -32,7 +32,7 @@ class Player
    }
    
    func pauseAudio () {
-      if (avPlayer.rate == 0 && avPlayer.error == nil) {
+      if (avPlayer.rate > 0 && avPlayer.error == nil) {
          avPlayer.pause()
       }
    }
