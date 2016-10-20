@@ -32,6 +32,11 @@ class ViewController: UIViewController {
       player.playStream(url)
       changePlayButton()
    }
+   
+   override func canBecomeFirstResponder() -> Bool {
+      return true
+   }
+   
    func setSession () {
       do {
          // tells iOS that our app is the only one that allows to play audio at the same time
@@ -66,6 +71,17 @@ class ViewController: UIViewController {
       // Dispose of any resources that can be recreated.
    }
 
+   override func remoteControlReceivedWithEvent(event: UIEvent?) {
+      if event!.type == UIEventType.RemoteControl {
+         if event!.subtype == UIEventSubtype.RemoteControlPause{
+            print("pause")
+            player.pauseAudio()
+         }
+         else if event!.subtype == UIEventSubtype.RemoteControlPlay{
+            player.playAudio()
+         }
+      }
+   }
 
 }
 
