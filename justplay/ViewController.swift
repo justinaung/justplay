@@ -25,6 +25,10 @@ class ViewController: UIViewController {
       // need to know where to go once we receive the event
       becomeFirstResponder()
       
+      // subscribe to notification center
+      NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleInterruption", name:
+         AVAudioSessionInterruptionNotification, object: nil)
+      
       player = Player()
       
       let url = "http://htetnainga.sg-host.com/music_app/dubstep.mp3"
@@ -82,6 +86,21 @@ class ViewController: UIViewController {
          }
       }
    }
-
+   
+   // the method can also be used to handel head phone in/out
+   func handleInterruption(notification: NSNotification) {
+      player.pauseAudio()
+      
+      // check the interruption type
+      let interruptionTypeAsObject = notification.userInfo![AVAudioSessionInterruptionTypeKey] as! NSNumber
+      
+      let interruptionType = AVAudioSessionInterruptionType(rawValue: interruptionTypeAsObject.unsignedLongValue)
+      
+      if let type = interruptionType {
+         if type == .Ended {  // for example, the phone call is done
+            player.playAudio()
+         }
+      }
+   }
 }
 
