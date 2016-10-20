@@ -22,6 +22,9 @@ class Player
       
       avPlayer = AVPlayer(URL: url!)
       avPlayer.play()
+      
+      setPlayingScreen(fileUrl)
+      
       print("Playing stream")
    }
    
@@ -35,5 +38,20 @@ class Player
       if (avPlayer.rate > 0 && avPlayer.error == nil) {
          avPlayer.pause()
       }
+   }
+   
+   func setPlayingScreen (fileUrl: String) {
+      let urlArray = fileUrl.characters.split{$0 == "/"}.map(String.init)
+      
+      let name = urlArray[urlArray.endIndex-1]
+      
+      print(name)
+      
+      let songInfo = [
+         MPMediaItemPropertyTitle: name,
+         MPMediaItemPropertyArtist: "Just Play"
+      ]
+      
+      MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
    }
 }
