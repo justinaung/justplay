@@ -17,12 +17,34 @@ class ViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       // Do any additional setup after loading the view, typically from a nib.
+      
+      setSession()
+      
+      // hey, if there's something happenning on the remote buttons, I want to know about it
+      UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+      // need to know where to go once we receive the event
+      becomeFirstResponder()
+      
       player = Player()
       
       let url = "http://htetnainga.sg-host.com/music_app/dubstep.mp3"
       
       player.playStream(url)
       changePlayButton()
+   }
+   
+   override func canBecomeFirstResponder() -> Bool {
+      return true
+   }
+   
+   func setSession () {
+      do {
+         // tells iOS that our app is the only one that allows to play audio at the same time
+         try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+      }
+      catch {
+         print(error)
+      }
    }
 
    @IBAction func playPauseButtonClick(sender: AnyObject) {
@@ -49,6 +71,17 @@ class ViewController: UIViewController {
       // Dispose of any resources that can be recreated.
    }
 
+   override func remoteControlReceivedWithEvent(event: UIEvent?) {
+      if event!.type == UIEventType.RemoteControl {
+         if event!.subtype == UIEventSubtype.RemoteControlPause{
+            print("pause")
+            player.pauseAudio()
+         }
+         else if event!.subtype == UIEventSubtype.RemoteControlPlay{
+            player.playAudio()
+         }
+      }
+   }
 
 }
 
