@@ -17,10 +17,10 @@ class Player
       avPlayer = AVPlayer()
    }
    
-   func playStream (fileUrl: String) {
-      let url = NSURL(string: fileUrl)
+   func playStream (_ fileUrl: String) {
+      let url = URL(string: fileUrl)
       
-      avPlayer = AVPlayer(URL: url!)
+      avPlayer = AVPlayer(url: url!)
       avPlayer.play()
       
       setPlayingScreen(fileUrl)
@@ -40,7 +40,7 @@ class Player
       }
    }
    
-   func setPlayingScreen (fileUrl: String) {
+   func setPlayingScreen (_ fileUrl: String) {
       let urlArray = fileUrl.characters.split{$0 == "/"}.map(String.init)
       
       let name = urlArray[urlArray.endIndex-1]
@@ -52,6 +52,6 @@ class Player
          MPMediaItemPropertyArtist: "Just Play"
       ]
       
-      MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+      MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
    }
 }

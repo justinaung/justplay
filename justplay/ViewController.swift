@@ -21,13 +21,13 @@ class ViewController: UIViewController {
       setSession()
       
       // hey, if there's something happenning on the remote buttons, I want to know about it
-      UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+      UIApplication.shared.beginReceivingRemoteControlEvents()
       // need to know where to go once we receive the event
       becomeFirstResponder()
       
       // subscribe to notification center
-      NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleInterruption", name:
-         AVAudioSessionInterruptionNotification, object: nil)
+      NotificationCenter.default.addObserver(self, selector: "handleInterruption", name:
+         NSNotification.Name.AVAudioSessionInterruption, object: nil)
       
       player = Player()
       
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
       changePlayButton()
    }
    
-   override func canBecomeFirstResponder() -> Bool {
+   override var canBecomeFirstResponder : Bool {
       return true
    }
    
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
       }
    }
 
-   @IBAction func playPauseButtonClick(sender: AnyObject) {
+   @IBAction func playPauseButtonClick(_ sender: AnyObject) {
       if (player.avPlayer.rate > 0) {
          player.pauseAudio()
       }
@@ -63,10 +63,10 @@ class ViewController: UIViewController {
    
    func changePlayButton() {
       if (player.avPlayer.rate > 0) {
-         playPauseButton.setImage(UIImage(named: "pauseIcon"), forState: UIControlState.Normal)
+         playPauseButton.setImage(UIImage(named: "pauseIcon"), for: UIControlState())
       }
       else {
-         playPauseButton.setImage(UIImage(named: "playIcon"), forState: UIControlState.Normal)
+         playPauseButton.setImage(UIImage(named: "playIcon"), for: UIControlState())
       }
    }
    
@@ -75,29 +75,29 @@ class ViewController: UIViewController {
       // Dispose of any resources that can be recreated.
    }
 
-   override func remoteControlReceivedWithEvent(event: UIEvent?) {
-      if event!.type == UIEventType.RemoteControl {
-         if event!.subtype == UIEventSubtype.RemoteControlPause{
+   override func remoteControlReceived(with event: UIEvent?) {
+      if event!.type == UIEventType.remoteControl {
+         if event!.subtype == UIEventSubtype.remoteControlPause{
             print("pause")
             player.pauseAudio()
          }
-         else if event!.subtype == UIEventSubtype.RemoteControlPlay{
+         else if event!.subtype == UIEventSubtype.remoteControlPlay{
             player.playAudio()
          }
       }
    }
    
    // the method can also be used to handel head phone in/out
-   func handleInterruption(notification: NSNotification) {
+   func handleInterruption(_ notification: Notification) {
       player.pauseAudio()
       
       // check the interruption type
-      let interruptionTypeAsObject = notification.userInfo![AVAudioSessionInterruptionTypeKey] as! NSNumber
+      let interruptionTypeAsObject = (notification as NSNotification).userInfo![AVAudioSessionInterruptionTypeKey] as! NSNumber
       
-      let interruptionType = AVAudioSessionInterruptionType(rawValue: interruptionTypeAsObject.unsignedLongValue)
+      let interruptionType = AVAudioSessionInterruptionType(rawValue: interruptionTypeAsObject.uintValue)
       
       if let type = interruptionType {
-         if type == .Ended {  // for example, the phone call is done
+         if type == .ended {  // for example, the phone call is done
             player.playAudio()
          }
       }
