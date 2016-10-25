@@ -31,10 +31,7 @@ class ViewController: UIViewController {
       
       player = Player()
       
-      let url = "http://htetnainga.sg-host.com/music_app/dubstep.mp3"
-      
-      player.playStream(url)
-      changePlayButton()
+      retrieveSongs()
    }
    
    override var canBecomeFirstResponder : Bool {
@@ -101,6 +98,18 @@ class ViewController: UIViewController {
             player.playAudio()
          }
       }
+   }
+   
+   func retrieveSongs () {
+      let url = URL(string: "http://htetnainga.sg-host.com/music_app/get_music.php")
+      
+      let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
+         let retrievedList = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+         print(retrievedList)
+      }
+      
+      task.resume()
+      print("Getting songs")
    }
 }
 
