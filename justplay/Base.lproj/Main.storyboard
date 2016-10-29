@@ -1,51 +1,51 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="justplay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="justPlay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dT9-B5-fW0">
-                                <rect key="frame" x="0.0" y="535" width="600" height="65"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nak-vE-dVn">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQD-H3-M1C">
-                                        <rect key="frame" x="286" y="18" width="29" height="29"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="int-E0-Md1">
                                         <state key="normal" image="playIcon"/>
                                         <connections>
-                                            <action selector="playPauseButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ujc-1N-Ssk"/>
+                                            <action selector="playPauseButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x3y-Vn-AIW"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ZQD-H3-M1C" secondAttribute="bottom" constant="17" id="8Qr-BK-2jC"/>
-                                    <constraint firstItem="ZQD-H3-M1C" firstAttribute="centerX" secondItem="dT9-B5-fW0" secondAttribute="centerX" id="Wd5-ln-cvw"/>
-                                    <constraint firstAttribute="height" constant="65" id="eld-Q4-d3O"/>
+                                    <constraint firstItem="int-E0-Md1" firstAttribute="centerX" secondItem="nak-vE-dVn" secondAttribute="centerX" id="Hhk-w3-ikL"/>
+                                    <constraint firstAttribute="bottom" secondItem="int-E0-Md1" secondAttribute="bottom" constant="18" id="Qgp-vG-LQT"/>
+                                    <constraint firstAttribute="height" constant="65" id="dPu-07-CpQ"/>
+                                    <constraint firstItem="int-E0-Md1" firstAttribute="centerX" secondItem="nak-vE-dVn" secondAttribute="centerX" id="wfD-jw-T3T"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dT9-B5-fW0" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottomMargin" id="EuX-nc-TYJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dT9-B5-fW0" secondAttribute="trailing" constant="-20" id="GBT-5z-QeH"/>
-                            <constraint firstItem="dT9-B5-fW0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="spJ-64-xho"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nak-vE-dVn" secondAttribute="trailing" constant="-20" id="Vp2-Bw-ZMM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nak-vE-dVn" secondAttribute="bottom" id="nbP-ZV-suQ"/>
+                            <constraint firstItem="nak-vE-dVn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="w4H-dg-jcy"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="playPauseButton" destination="ZQD-H3-M1C" id="5Bs-Hq-ldg"/>
+                        <outlet property="playPauseButton" destination="int-E0-Md1" id="RlO-cy-vcE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -53,6 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="playIcon" width="29" height="29"/>
+        <image name="playIcon" width="40" height="40"/>
     </resources>
 </document>

@@ -1,8 +1,8 @@
 //
 //  Player.swift
-//  justplay
+//  justPlay
 //
-//  Created by Justin Naing on 10/14/16.
+//  Created by Justin Naing on 10/29/16.
 //  Copyright © 2016 JIT. All rights reserved.
 //
 
@@ -18,9 +18,9 @@ class Player
    }
    
    func playStream (_ fileUrl: String) {
-      let url = URL(string: fileUrl)
+      let songUrl = NSURL(string: fileUrl)
       
-      avPlayer = AVPlayer(url: url!)
+      avPlayer = AVPlayer(url: songUrl! as URL)
       avPlayer.play()
       
       setPlayingScreen(fileUrl)
@@ -41,7 +41,7 @@ class Player
    }
    
    func setPlayingScreen (_ fileUrl: String) {
-      let urlArray = fileUrl.characters.split{$0 == "/"}.map(String.init)
+      let urlArray = fileUrl.characters.split(separator: "/").map(String.init)
       
       let name = urlArray[urlArray.endIndex-1]
       
