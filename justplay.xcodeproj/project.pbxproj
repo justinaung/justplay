@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		221B03031DC4A8ED00A0DD1A /* SongsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221B03021DC4A8ED00A0DD1A /* SongsTableViewCell.swift */; };
 		22E12C5D1DC4882000505B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E12C5C1DC4882000505B8D /* AppDelegate.swift */; };
 		22E12C5F1DC4882000505B8D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E12C5E1DC4882000505B8D /* ViewController.swift */; };
 		22E12C621DC4882000505B8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E12C601DC4882000505B8D /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		221B03021DC4A8ED00A0DD1A /* SongsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewCell.swift; sourceTree = "<group>"; };
 		22E12C591DC4882000505B8D /* justPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = justPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22E12C5C1DC4882000505B8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22E12C5E1DC4882000505B8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				22E12C681DC4882000505B8D /* Info.plist */,
 				22E12C8C1DC48D3700505B8D /* Player.swift */,
 				22E12C8E1DC48D4600505B8D /* Song.swift */,
+				221B03021DC4A8ED00A0DD1A /* SongsTableViewCell.swift */,
 			);
 			path = justPlay;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221B03031DC4A8ED00A0DD1A /* SongsTableViewCell.swift in Sources */,
 				22E12C8F1DC48D4600505B8D /* Song.swift in Sources */,
 				22E12C5F1DC4882000505B8D /* ViewController.swift in Sources */,
 				22E12C8D1DC48D3700505B8D /* Player.swift in Sources */,
@@ -518,6 +522,7 @@
 				22E12C831DC4882000505B8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22E12C841DC4882000505B8D /* Build configuration list for PBXNativeTarget "justPlayTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +531,7 @@
 				22E12C861DC4882000505B8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22E12C871DC4882000505B8D /* Build configuration list for PBXNativeTarget "justPlayUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +540,7 @@
 				22E12C891DC4882000505B8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
