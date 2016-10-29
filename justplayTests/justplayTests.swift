@@ -1,15 +1,15 @@
 //
-//  justplayTests.swift
-//  justplayTests
+//  justPlayTests.swift
+//  justPlayTests
 //
-//  Created by Justin Naing on 10/13/16.
+//  Created by Justin Naing on 10/29/16.
 //  Copyright © 2016 JIT. All rights reserved.
 //
 
 import XCTest
-@testable import justplay
+@testable import justPlay
 
-class justplayTests: XCTestCase {
+class justPlayTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

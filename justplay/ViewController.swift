@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  justplay
+//  justPlay
 //
-//  Created by Justin Naing on 10/13/16.
+//  Created by Justin Naing on 10/29/16.
 //  Copyright © 2016 JIT. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import MediaPlayer
 class ViewController: UIViewController {
 
    @IBOutlet weak var playPauseButton: UIButton!
+   
    var player: Player!
    var songs: [Song] = []
    
@@ -27,10 +28,14 @@ class ViewController: UIViewController {
       becomeFirstResponder()
       
       // subscribe to notification center
-      NotificationCenter.default.addObserver(self, selector: "handleInterruption", name:
+      NotificationCenter.default.addObserver(self, selector: Selector(("handleInterruption")), name:
          NSNotification.Name.AVAudioSessionInterruption, object: nil)
       
       player = Player()
+      
+      player.playStream("http://htetnainga.sg-host.com/music_app/dubstep.mp3")
+      
+      changePlayButton()
       
       retrieveSongs()
    }
@@ -48,7 +53,7 @@ class ViewController: UIViewController {
          print(error)
       }
    }
-
+   
    @IBAction func playPauseButtonClick(_ sender: AnyObject) {
       if (player.avPlayer.rate > 0) {
          player.pauseAudio()
@@ -68,11 +73,6 @@ class ViewController: UIViewController {
       }
    }
    
-   override func didReceiveMemoryWarning() {
-      super.didReceiveMemoryWarning()
-      // Dispose of any resources that can be recreated.
-   }
-
    override func remoteControlReceived(with event: UIEvent?) {
       if event!.type == UIEventType.remoteControl {
          if event!.subtype == UIEventSubtype.remoteControlPause{
@@ -118,7 +118,7 @@ class ViewController: UIViewController {
       if ( data.contains("*") ) {
          let dataArray = (data as String).characters.split(separator: "*").map(String.init)
          for item in dataArray {
-            let itemData = item.characters.split(separator: "*").map(String.init)
+            let itemData = item.characters.split(separator: ",").map(String.init)
             let newSong = Song(id: itemData[0], name: itemData[1], numLikes: itemData[2], numPlays: itemData[3])
             songs.append(newSong!)
          }
@@ -127,5 +127,6 @@ class ViewController: UIViewController {
          }
       }
    }
+
 }
 

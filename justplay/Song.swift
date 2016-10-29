@@ -1,6 +1,6 @@
 //
 //  Song.swift
-//  justplay
+//  justPlay
 //
 //  Created by Justin Naing on 10/29/16.
 //  Copyright © 2016 JIT. All rights reserved.

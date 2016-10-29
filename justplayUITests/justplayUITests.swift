@@ -1,14 +1,14 @@
 //
-//  justplayUITests.swift
-//  justplayUITests
+//  justPlayUITests.swift
+//  justPlayUITests
 //
-//  Created by Justin Naing on 10/13/16.
+//  Created by Justin Naing on 10/29/16.
 //  Copyright © 2016 JIT. All rights reserved.
 //
 
 import XCTest
 
-class justplayUITests: XCTestCase {
+class justPlayUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
