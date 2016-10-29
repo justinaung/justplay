@@ -36,4 +36,12 @@ class Song {
    func getNumPlays () -> Int {
       return numPlays
    }
+   
+   func getCleanName () -> String {
+      var cleanName: String = name
+      let range = name.index(name.endIndex, offsetBy: -4)..<name.endIndex
+      cleanName.removeSubrange(range)
+      
+      return cleanName.capitalized(with: NSLocale.current)
+   }
 }

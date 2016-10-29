@@ -9,8 +9,10 @@
 import UIKit
 import MediaPlayer
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+   
+   @IBOutlet weak var nowPlayingLabel: UILabel!
+   @IBOutlet weak var tableView: UITableView!
    @IBOutlet weak var playPauseButton: UIButton!
    
    var player: Player!
@@ -31,14 +33,39 @@ class ViewController: UIViewController {
       NotificationCenter.default.addObserver(self, selector: Selector(("handleInterruption")), name:
          NSNotification.Name.AVAudioSessionInterruption, object: nil)
       
+      nowPlayingLabel.text = ""
       player = Player()
+      tableView.delegate = self
+      tableView.dataSource = self
       
-      player.playStream("http://htetnainga.sg-host.com/music_app/dubstep.mp3")
+//      player.playStream("http://htetnainga.sg-host.com/music_app/dubstep.mp3")
       
-      changePlayButton()
+//      changePlayButton()
       
       retrieveSongs()
    }
+   
+   // delegate and source for table view
+   func numberOfSections(in tableView: UITableView) -> Int {
+      return 1
+   }
+   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return songs.count
+   }
+   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "SongsTableViewCell", for: indexPath) as!  SongsTableViewCell
+      
+      cell.mainLabel.text = songs[indexPath.row].getCleanName()
+      
+      return cell
+   }
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      tableView.deselectRow(at: indexPath, animated: true)
+      player.playStream("http://htetnainga.sg-host.com/music_app/" + songs[indexPath.row].getName())
+      changePlayButton()
+      nowPlayingLabel.text = songs[indexPath.row].getCleanName()
+   }
+   // END
    
    override var canBecomeFirstResponder : Bool {
       return true
@@ -124,6 +151,10 @@ class ViewController: UIViewController {
          }
          for s in songs {
             print (s.getName())
+         }
+         // move to the main thread to update the table view otherwise it will not show until you move the screen
+         DispatchQueue.main.sync {
+            self.tableView.reloadData()
          }
       }
    }
