@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
    @IBOutlet weak var playPauseButton: UIButton!
    var player: Player!
+   var songs: [Song] = []
    
    override func viewDidLoad() {
       super.viewDidLoad()
@@ -106,10 +107,25 @@ class ViewController: UIViewController {
       let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
          let retrievedList = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
          print(retrievedList)
+         self.parseSongs(data: retrievedList!)
       }
       
       task.resume()
       print("Getting songs")
+   }
+   
+   func parseSongs (data: NSString) {
+      if ( data.contains("*") ) {
+         let dataArray = (data as String).characters.split(separator: "*").map(String.init)
+         for item in dataArray {
+            let itemData = item.characters.split(separator: "*").map(String.init)
+            let newSong = Song(id: itemData[0], name: itemData[1], numLikes: itemData[2], numPlays: itemData[3])
+            songs.append(newSong!)
+         }
+         for s in songs {
+            print (s.getName())
+         }
+      }
    }
 }
 

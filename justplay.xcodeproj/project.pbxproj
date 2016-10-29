@@ -15,6 +15,7 @@
 		2206EA771DAFDACF00EFB3B7 /* justplayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2206EA761DAFDACF00EFB3B7 /* justplayTests.swift */; };
 		2206EA821DAFDACF00EFB3B7 /* justplayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2206EA811DAFDACF00EFB3B7 /* justplayUITests.swift */; };
 		2206EA901DAFF90E00EFB3B7 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2206EA8F1DAFF90E00EFB3B7 /* Player.swift */; };
+		223982371DC456A5002B3A7A /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223982361DC456A5002B3A7A /* Song.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2206EA811DAFDACF00EFB3B7 /* justplayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = justplayUITests.swift; sourceTree = "<group>"; };
 		2206EA831DAFDACF00EFB3B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2206EA8F1DAFF90E00EFB3B7 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		223982361DC456A5002B3A7A /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				2206EA6A1DAFDACF00EFB3B7 /* LaunchScreen.storyboard */,
 				2206EA6D1DAFDACF00EFB3B7 /* Info.plist */,
 				2206EA8F1DAFF90E00EFB3B7 /* Player.swift */,
+				223982361DC456A5002B3A7A /* Song.swift */,
 			);
 			path = justplay;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				223982371DC456A5002B3A7A /* Song.swift in Sources */,
 				2206EA641DAFDACF00EFB3B7 /* ViewController.swift in Sources */,
 				2206EA901DAFF90E00EFB3B7 /* Player.swift in Sources */,
 				2206EA621DAFDACF00EFB3B7 /* AppDelegate.swift in Sources */,
