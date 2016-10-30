@@ -15,9 +15,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    @IBOutlet weak var nowPlayingLabelArtist: UILabel!
    @IBOutlet weak var tableView: UITableView!
    @IBOutlet weak var playPauseButton: UIButton!
+   @IBOutlet weak var likeButton: UIButton!
    
    var player: Player!
    var songs: [Song] = []
+   var currentId: Int!
    
    override func viewDidLoad() {
       super.viewDidLoad()
@@ -36,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       
       nowPlayingLabel.text = ""
       nowPlayingLabelArtist.text = ""
-      
+      likeButton.setTitle("", for: .normal)
       player = Player()
       tableView.delegate = self
       tableView.dataSource = self
@@ -63,14 +65,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       tableView.deselectRow(at: indexPath, animated: true)
       player.playStream("http://htetnainga.sg-host.com/music_app/" + songs[indexPath.row].getArtist() + " - " + songs[indexPath.row].getName())
       changePlayButton()
-      nowPlayingLabel.text = songs[indexPath.row].getCleanName()
-      nowPlayingLabelArtist.text = songs[indexPath.row].getArtist()
+      setLabels(song: songs[indexPath.row])
       songPlayed(id: songs[indexPath.row].getId())
    }
    // END
    
    override var canBecomeFirstResponder : Bool {
       return true
+   }
+   
+   func setLabels (song: Song) {
+      nowPlayingLabel.text = song.getCleanName()
+      nowPlayingLabelArtist.text = song.getArtist()
+      currentId = song.getId()
+      likeButton.setTitle("+1", for: .normal)
    }
    
    func setSession () {
@@ -82,7 +90,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          print(error)
       }
    }
-   
+
+   @IBAction func likeButtonClicked(_ sender: UIButton) {
+      if let id = currentId {
+         likeSong(id: id)
+      }
+   }
+
    @IBAction func playPauseButtonClick(_ sender: AnyObject) {
       if (player.avPlayer.rate > 0) {
          player.pauseAudio()
@@ -152,7 +166,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
       
       task.resume()
-      print("Liking songs")
+      print("Played : " + nowPlayingLabelArtist.text! + " - " + nowPlayingLabel.text!)
+   }
+   
+   func likeSong (id: Int) {
+      let url = URL(string: "http://htetnainga.sg-host.com/music_app/like_song.php?id=" + String(id))
+      
+      let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
+         let retrievedData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+         print(retrievedData)
+      }
+      
+      task.resume()
+      print("Liked : " + nowPlayingLabelArtist.text! + " - " + nowPlayingLabel.text!)
    }
    
    func parseSongs (data: NSString) {
