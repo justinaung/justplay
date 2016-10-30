@@ -12,6 +12,7 @@ import MediaPlayer
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
    @IBOutlet weak var nowPlayingLabel: UILabel!
+   @IBOutlet weak var nowPlayingLabelArtist: UILabel!
    @IBOutlet weak var tableView: UITableView!
    @IBOutlet weak var playPauseButton: UIButton!
    
@@ -34,13 +35,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          NSNotification.Name.AVAudioSessionInterruption, object: nil)
       
       nowPlayingLabel.text = ""
+      nowPlayingLabelArtist.text = ""
+      
       player = Player()
       tableView.delegate = self
       tableView.dataSource = self
-      
-//      player.playStream("http://htetnainga.sg-host.com/music_app/dubstep.mp3")
-      
-//      changePlayButton()
       
       retrieveSongs()
    }
@@ -56,14 +55,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       let cell = tableView.dequeueReusableCell(withIdentifier: "SongsTableViewCell", for: indexPath) as!  SongsTableViewCell
       
       cell.mainLabel.text = songs[indexPath.row].getCleanName()
+      cell.artistLabel.text = songs[indexPath.row].getArtist()
       
       return cell
    }
    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       tableView.deselectRow(at: indexPath, animated: true)
-      player.playStream("http://htetnainga.sg-host.com/music_app/" + songs[indexPath.row].getName())
+      player.playStream("http://htetnainga.sg-host.com/music_app/" + songs[indexPath.row].getArtist() + " - " + songs[indexPath.row].getName())
       changePlayButton()
       nowPlayingLabel.text = songs[indexPath.row].getCleanName()
+      nowPlayingLabelArtist.text = songs[indexPath.row].getArtist()
+      songPlayed(id: songs[indexPath.row].getId())
    }
    // END
    
@@ -141,12 +143,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       print("Getting songs")
    }
    
+   func songPlayed (id: Int) {
+      let url = URL(string: "http://htetnainga.sg-host.com/music_app/add_play.php?id=" + String(id))
+      
+      let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
+         let retrievedData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+         print(retrievedData)
+      }
+      
+      task.resume()
+      print("Liking songs")
+   }
+   
    func parseSongs (data: NSString) {
       if ( data.contains("*") ) {
          let dataArray = (data as String).characters.split(separator: "*").map(String.init)
          for item in dataArray {
             let itemData = item.characters.split(separator: ",").map(String.init)
-            let newSong = Song(id: itemData[0], name: itemData[1], numLikes: itemData[2], numPlays: itemData[3])
+            let newSong = Song(id: itemData[0], name: itemData[1], numLikes: itemData[2], numPlays: itemData[3], artist: itemData[4])
             songs.append(newSong!)
          }
          for s in songs {

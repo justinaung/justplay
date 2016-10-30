@@ -18,14 +18,15 @@ class Player
    }
    
    func playStream (_ fileUrl: String) {
-      let songUrl = NSURL(string: fileUrl)
+      if let songUrl = NSURL(string: fileUrl.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!) {
       
-      avPlayer = AVPlayer(url: songUrl! as URL)
-      avPlayer.play()
-      
-      setPlayingScreen(fileUrl)
-      
-      print("Playing stream")
+         avPlayer = AVPlayer(url: songUrl as URL)
+         avPlayer.play()
+         
+         setPlayingScreen(fileUrl)
+         
+         print("Playing stream")
+      }
    }
    
    func playAudio () {

@@ -13,12 +13,14 @@ class Song {
    var name: String
    var numLikes: Int
    var numPlays: Int
+   var artist: String
    
-   init? (id: String, name: String, numLikes: String, numPlays: String) {
-      self.id = Int(id)!
-      self.name = name
+   init? (id: String, name: String, numLikes: String, numPlays: String, artist: String) {
+      self.id       = Int(id)!
+      self.name     = name
       self.numLikes = Int(numLikes)!
       self.numPlays = Int(numPlays)!
+      self.artist   = artist
    }
    
    func getId () -> Int {
@@ -35,6 +37,10 @@ class Song {
    
    func getNumPlays () -> Int {
       return numPlays
+   }
+   
+   func getArtist () -> String {
+      return artist
    }
    
    func getCleanName () -> String {
