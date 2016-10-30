@@ -8,6 +8,8 @@
 
 import UIKit
 import MediaPlayer
+import Social
+import Accounts
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
@@ -20,6 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    var player: Player!
    var songs: [Song] = []
    var currentId: Int!
+   var currentSong: Song!
    
    override func viewDidLoad() {
       super.viewDidLoad()
@@ -65,8 +68,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       tableView.deselectRow(at: indexPath, animated: true)
       player.playStream("http://htetnainga.sg-host.com/music_app/" + songs[indexPath.row].getArtist() + " - " + songs[indexPath.row].getName())
       changePlayButton()
-      setLabels(song: songs[indexPath.row])
-      songPlayed(id: songs[indexPath.row].getId())
+      currentSong = songs[indexPath.row]
+      setLabels(song: currentSong)
+      songPlayed(id: currentSong.getId())
    }
    // END
    
@@ -91,6 +95,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
    }
 
+   @IBAction func facebookButtonClicked(_ sender: UIButton) {
+      shareFaceBook()
+   }
+   
    @IBAction func likeButtonClicked(_ sender: UIButton) {
       if let id = currentId {
          likeSong(id: id)
@@ -198,6 +206,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          }
       }
    }
-
+   
+   func shareFaceBook () {
+      if let song = currentSong {
+         let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+         vc?.setInitialText("Listening to : " + song.getCleanName() + " by " + song.getArtist() + ". Just Play App")
+         vc?.add(URL(string: "http://htetnainga.sg-host.com"))
+         present(vc!, animated: true, completion: nil)
+      }
+   }
 }
 

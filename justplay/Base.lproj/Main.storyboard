@@ -41,9 +41,15 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ed-ZV-XIZ">
-                                        <frame key="frameInset" minX="220" minY="8" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zlo-d6-oWl">
+                                        <frame key="frameInset" minX="247" minY="47" width="128" height="30"/>
+                                        <state key="normal" title="Share to Facebook"/>
+                                        <connections>
+                                            <action selector="facebookButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zpf-XY-osq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ed-ZV-XIZ">
+                                        <frame key="frameInset" minX="345" minY="19" width="30" height="30"/>
                                         <state key="normal" title="+1">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -57,11 +63,15 @@
                                     <constraint firstAttribute="trailing" secondItem="BUb-e9-KG1" secondAttribute="trailing" id="Dj9-Qf-PVb"/>
                                     <constraint firstItem="int-E0-Md1" firstAttribute="top" secondItem="3lL-eE-rHw" secondAttribute="bottom" constant="5" id="GSm-g7-0Hn"/>
                                     <constraint firstItem="int-E0-Md1" firstAttribute="centerX" secondItem="nak-vE-dVn" secondAttribute="centerX" id="Hhk-w3-ikL"/>
+                                    <constraint firstAttribute="trailing" secondItem="5ed-ZV-XIZ" secondAttribute="trailing" constant="8" id="ORx-JO-6dS"/>
                                     <constraint firstAttribute="bottom" secondItem="int-E0-Md1" secondAttribute="bottom" constant="18" id="Qgp-vG-LQT"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zlo-d6-oWl" secondAttribute="trailing" constant="23" id="UaG-qF-keV"/>
                                     <constraint firstItem="BUb-e9-KG1" firstAttribute="leading" secondItem="nak-vE-dVn" secondAttribute="leading" id="Zle-3b-wlY"/>
                                     <constraint firstAttribute="height" constant="100" id="dPu-07-CpQ"/>
                                     <constraint firstAttribute="trailing" secondItem="3lL-eE-rHw" secondAttribute="trailing" id="dUR-Yu-slB"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zlo-d6-oWl" secondAttribute="bottom" constant="18" id="jTG-9c-h76"/>
                                     <constraint firstItem="BUb-e9-KG1" firstAttribute="top" secondItem="nak-vE-dVn" secondAttribute="top" constant="8" id="jgd-XL-bmB"/>
+                                    <constraint firstItem="Zlo-d6-oWl" firstAttribute="top" secondItem="5ed-ZV-XIZ" secondAttribute="bottom" constant="5" id="qkG-pv-wWh"/>
                                     <constraint firstItem="3lL-eE-rHw" firstAttribute="leading" secondItem="nak-vE-dVn" secondAttribute="leading" id="uYe-jz-iH4"/>
                                     <constraint firstItem="3lL-eE-rHw" firstAttribute="top" secondItem="BUb-e9-KG1" secondAttribute="bottom" constant="2" id="vga-Ws-QDc"/>
                                     <constraint firstItem="int-E0-Md1" firstAttribute="centerX" secondItem="nak-vE-dVn" secondAttribute="centerX" id="wfD-jw-T3T"/>
